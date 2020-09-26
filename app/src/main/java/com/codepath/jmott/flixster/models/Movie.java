@@ -17,9 +17,11 @@ public class Movie {
     String title;
     String overview;
     double rating;
+    String released;
 
     //Empty constructor needed with Parceler library
     public Movie() {}
+
 
     public Movie(JSONObject jsonObject) throws JSONException {
         movieId = jsonObject.getInt("id");
@@ -28,6 +30,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         rating = jsonObject.getDouble("vote_average");
+        released = jsonObject.getString("release_date");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
@@ -39,9 +42,7 @@ public class Movie {
         return movies;
     }
 
-    public int getMovieId() {
-        return movieId;
-    }
+    public int getMovieId() { return movieId; }
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
@@ -61,5 +62,9 @@ public class Movie {
 
     public double getRating() {
         return rating;
+    }
+
+    public String getReleased() {
+        return "Released: " + released;
     }
 }

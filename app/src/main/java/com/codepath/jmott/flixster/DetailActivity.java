@@ -1,7 +1,5 @@
 package com.codepath.jmott.flixster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RatingBar;
@@ -26,6 +24,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     String youtube_Apikey = BuildConfig.YOUTUBE_API_KEY;
     public static String VIDEO_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
+    TextView tvRelease;
     TextView tvTitle;
     TextView tvOverview;
     RatingBar ratingBar;
@@ -36,12 +35,14 @@ public class DetailActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        tvRelease = findViewById(R.id.tvRelease);
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);
         ratingBar = findViewById(R.id.ratingBar);
         youTubePlayerView = findViewById(R.id.player);
 
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
+        tvRelease.setText(movie.getReleased());
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         ratingBar.setRating((float)movie.getRating());
@@ -69,8 +70,6 @@ public class DetailActivity extends YouTubeBaseActivity {
 
             }
         });
-
-
     }
 
     private void InitializeYouTube(final String youTubeKey) {
