@@ -14,11 +14,12 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 
 #### BONUS
 
+- [X] Implement a shared element transition when user clicks into the details of a movie (1 point)
 - [X] Trailers for popular movies are played automatically when the movie is selected (1 point).
-  - [X] When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
+  - [X] When clicking on a popular movie (i.e. a movie voted for more than 7 stars) the video should be played immediately.
   - [X] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
-- [ ] Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
-- [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
+- [ ] Add a play icon overlay to popular movies to indicate that the movie can be played. (1 point)
+- [ ] Apply data binding for views to help remove boilerplate code. (1 point)
 - [X] Add a rounded corners for the images using the Glide transformations. (1 point)
 
 ### App Walkthough GIF
@@ -27,6 +28,8 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 
 ### Notes
 It took me awhile to figure out some issues with the rounded corners.  It was throwing off the alignment for the item view.  Once I noticed that the output was giving me a notification about Glide, I was able to work out that I needed to manually set the height vs. wrapping the content in order for the item view to display the way I wanted.
+
+I also changed the rating for movies to autoplay the trailer to more than 7 stars.  At 5 stars, all currently playing films were rated high enough to autoplay, so I could not show the difference in my gif.
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
