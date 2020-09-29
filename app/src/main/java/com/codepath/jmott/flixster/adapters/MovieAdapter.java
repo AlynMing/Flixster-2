@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.jmott.flixster.DetailActivity;
-import com.codepath.jmott.flixster.MainActivity;
 import com.codepath.jmott.flixster.R;
 import com.codepath.jmott.flixster.models.Movie;
 
