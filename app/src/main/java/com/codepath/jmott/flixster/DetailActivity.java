@@ -29,6 +29,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     TextView tvOverview;
     RatingBar ratingBar;
     YouTubePlayerView youTubePlayerView;
+    double rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class DetailActivity extends YouTubeBaseActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         ratingBar.setRating((float)movie.getRating());
+        rating = movie.getRating();
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(String.format(VIDEO_URL, movie.getMovieId()), new JsonHttpResponseHandler() {
@@ -58,7 +60,7 @@ public class DetailActivity extends YouTubeBaseActivity {
                     }
                     String youTubeKey = results.getJSONObject(0).getString("key");
                     Log.d("DetailActivity", youTubeKey);
-                    InitializeYouTube(youTubeKey);
+                    InitializeYouTube(youTubeKey, rating);
                 } catch (JSONException e) {
                     Log.e("DetailActivity", "Failsed to parse JSON", e);
                     e.printStackTrace();
@@ -72,12 +74,16 @@ public class DetailActivity extends YouTubeBaseActivity {
         });
     }
 
-    private void InitializeYouTube(final String youTubeKey) {
+    private void InitializeYouTube(final String youTubeKey, final double rating) {
         youTubePlayerView.initialize(youtube_Apikey, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
-                youTubePlayer.cueVideo(youTubeKey);
+                if (rating > 5.0) {
+                    youTubePlayer.loadVideo(youTubeKey);
+                } else {
+                    youTubePlayer.cueVideo(youTubeKey);
+                }
             }
 
             @Override
